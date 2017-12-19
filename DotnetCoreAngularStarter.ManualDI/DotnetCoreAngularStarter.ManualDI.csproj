@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotnetCoreAngularStarter.BusinessLogic\DotnetCoreAngularStarter.BusinessLogic.csproj" />
+    <ProjectReference Include="..\DotnetCoreAngularStarter.Infrastructure\DotnetCoreAngularStarter.Infrastructure.csproj" />
+    <ProjectReference Include="..\DotnetCoreAngularStarter.Models.DTO\DotnetCoreAngularStarter.Models.DTO.csproj" />
+    <ProjectReference Include="..\DotnetCoreAngularStarter.Models.EntityFramework\DotnetCoreAngularStarter.Models.EntityFramework.csproj" />
+    <ProjectReference Include="..\DotnetCoreAngularStarter.Models.VM\DotnetCoreAngularStarter.Models.VM.csproj" />
+  </ItemGroup>
+
+</Project>

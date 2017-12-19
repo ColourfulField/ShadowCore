@@ -1,0 +1,9 @@
+*/bin/*
+*/obj/*
+*.dll
+.vs/*
+*/vs/*
+*/node_modules/*
+*/.idea/*
+*.rar
+*.zip
