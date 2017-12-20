@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using ShadowBox.Mapper.Abstract;
 using DotnetCoreAngularStarter.Models.EntityFramework.Domain;

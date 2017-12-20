@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShadowBox.Utilities.Reflection
+namespace ShadowBox.Utilities.Extensions.Reflection
 {
     public static class TypeExtensions
     {

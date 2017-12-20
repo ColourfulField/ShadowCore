@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ShadowBox.AutomaticDI.Interfaces;
 
-namespace DotnetCoreAngularStarter.DAL.Abstract
+namespace DotnetCoreAngularStarter.DAL.EntityFramework.Abstract
 {
     public interface IUnitOfWork : IScopedLifetime
     {

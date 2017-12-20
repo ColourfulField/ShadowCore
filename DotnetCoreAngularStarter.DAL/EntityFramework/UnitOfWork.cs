@@ -1,11 +1,15 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using DotnetCoreAngularStarter.DAL.Abstract;
+using DotnetCoreAngularStarter.DAL.EntityFramework.Abstract;
+using DotnetCoreAngularStarter.DAL.EntityFramework.Repository;
+using DotnetCoreAngularStarter.Common;
 using DotnetCoreAngularStarter.Models.EntityFramework.Abstract;
+using ShadowBox.AutomaticDI;
 
-namespace DotnetCoreAngularStarter.DAL
+namespace DotnetCoreAngularStarter.DAL.EntityFramework
 {
+    [Feature(DependencyInjectionFeatureNames.EntityFramework)]
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDotnetCoreAngularStarterDbContext _db;
@@ -17,9 +21,9 @@ namespace DotnetCoreAngularStarter.DAL
 
         public IRepository<T> Repository<T>() where T : class
         {
-            var repositoryType = typeof(RepositoryEntityFramework<>);
+            var repositoryType = typeof(BaseRepository<>);
             var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), _db);
-            return (RepositoryEntityFramework<T>)repositoryInstance;
+            return (BaseRepository<T>)repositoryInstance;
         }
 
         public int SaveChanges()

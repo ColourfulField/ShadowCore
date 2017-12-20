@@ -6,10 +6,17 @@ namespace ShadowBox.Mapper.Abstract
     {
         async Task<TDestination> IMapping<TSource, TDestination>.Map(TSource source, TDestination destination)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             if (destination == null)
+            {
                 destination = new TDestination();
-            if (source != null)
-                await MapFieldsAsync(source, destination);
+            }
+            
+            await MapFieldsAsync(source, destination);
             return destination;
         }
 

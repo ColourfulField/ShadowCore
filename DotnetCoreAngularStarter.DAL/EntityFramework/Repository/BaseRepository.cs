@@ -1,19 +1,22 @@
 using Microsoft.EntityFrameworkCore;
-using DotnetCoreAngularStarter.DAL.Abstract;
 using DotnetCoreAngularStarter.Models.EntityFramework.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DotnetCoreAngularStarter.DAL.EntityFramework.Abstract;
+using DotnetCoreAngularStarter.Common;
+using ShadowBox.AutomaticDI;
 
-namespace DotnetCoreAngularStarter.DAL
+namespace DotnetCoreAngularStarter.DAL.EntityFramework.Repository
 {
-    public class RepositoryEntityFramework<T> : IRepository<T>
+    [Feature(DependencyInjectionFeatureNames.EntityFramework)]
+    public class BaseRepository<T> : IRepository<T>
               where T : class
     {
-        private readonly IDotnetCoreAngularStarterDbContext _db;
+        protected readonly IDotnetCoreAngularStarterDbContext _db;
 
-        public RepositoryEntityFramework(IDotnetCoreAngularStarterDbContext context)
+        public BaseRepository(IDotnetCoreAngularStarterDbContext context)
         {
             _db = context;
         }

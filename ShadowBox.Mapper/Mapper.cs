@@ -10,11 +10,13 @@ namespace ShadowBox.Mapper
     {
         private readonly IEnumerable<IMapping> _mappings;
 
+        //TODO test how fast is this resolver
         public Mapper(IEnumerable<IMapping> mappings)
         {
             _mappings = mappings;
         }
 
+        //TODO cache already found mappings to improve performance
         public async Task<TDestination> Map<TSource, TDestination>(TSource source, TDestination destination = null) where TDestination : class
         {
             var genericType = typeof(IMapping<,>).MakeGenericType(typeof(TSource), typeof(TDestination));

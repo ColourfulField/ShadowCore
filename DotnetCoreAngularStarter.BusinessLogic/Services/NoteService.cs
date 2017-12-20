@@ -1,28 +1,35 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using DotnetCoreAngularStarter.BusinessLogic.Services.Abstract;
+using DotnetCoreAngularStarter.DAL.EntityFramework.Abstract;
 using DotnetCoreAngularStarter.Models.DTO;
-using DotnetCoreAngularStarter.DAL.Abstract;
 using DotnetCoreAngularStarter.Models.EntityFramework.Domain;
 using ShadowBox.Mapper.Abstract;
+using ShadowBox.Utilities.Extensions;
+using ShadowBox.Utilities.Models;
+using ShadowBox.Mapper.Extensions;
 
 namespace DotnetCoreAngularStarter.BusinessLogic.Services
 {
-    public class NoteService : INoteService
+    public class NoteService : BaseService, INoteService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
         private readonly IStringLocalizer<NoteService> _localizer;
-        public NoteService(IUnitOfWork unitOfWork, IMapper mapper, IStringLocalizer<NoteService> localizer)
+
+        public NoteService(
+            IUnitOfWork unitOfWork,
+            IMapper mapper,
+            IStringLocalizer<NoteService> localizer
+        ) : base(unitOfWork, mapper)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
             _localizer = localizer;
         }
+
         public Task<string> GetString()
         {
-            return Task.FromResult("HEEEEEEY");
+            return Task.FromResult("Hello from NoteService");
         }
 
         public async Task<NoteDTO> GetNote()
@@ -31,7 +38,7 @@ namespace DotnetCoreAngularStarter.BusinessLogic.Services
             {
                 Id = Guid.NewGuid(),
                 Number = 111,
-                Text = _localizer["Hello"],  //"Hello qweqweqwe",
+                Text = _localizer["Hello"], //"Hello qweqweqwe",
                 CreationDate = DateTime.Now.AddDays(-2),
                 ModificationDate = DateTime.Now,
                 ParentNote = new Note
@@ -64,6 +71,16 @@ namespace DotnetCoreAngularStarter.BusinessLogic.Services
 
             note.ParentNote.ParentNote = note;
             return await _mapper.Map<Note, NoteDTO>(note);
+        }
+
+        public async Task<IList<NoteDTO>> GetNotesByText(string text)
+        {
+            var notes = _unitOfWork.Repository<Note>()
+                                   .GetAll()
+                                   .Where(x => x.Text.Contains(text))
+                                   .ApplyPagination(new BaseFilter());
+
+            return await _mapper.Map<Note, NoteDTO>(notes).ToListAsync();
         }
 
         public async Task<Guid> AddNote(string text)

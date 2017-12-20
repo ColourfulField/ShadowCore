@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace ShadowBox.Utilities.Reflection
+namespace ShadowBox.Utilities.Extensions.Reflection
 {
     public static class ObjectExtensions
     {

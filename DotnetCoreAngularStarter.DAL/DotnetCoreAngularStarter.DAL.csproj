@@ -10,8 +10,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DotnetCoreAngularStarter.Common\DotnetCoreAngularStarter.Common.csproj" />
     <ProjectReference Include="..\DotnetCoreAngularStarter.Models.EntityFramework\DotnetCoreAngularStarter.Models.EntityFramework.csproj" />
     <ProjectReference Include="..\ShadowBox.AutomaticDI\ShadowBox.AutomaticDI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MongoDB\" />
   </ItemGroup>
 
 </Project>

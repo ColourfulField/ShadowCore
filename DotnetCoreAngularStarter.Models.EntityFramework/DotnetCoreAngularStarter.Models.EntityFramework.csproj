@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotnetCoreAngularStarter.Infrastructure\DotnetCoreAngularStarter.Infrastructure.csproj" />
+    <ProjectReference Include="..\DotnetCoreAngularStarter.Common\DotnetCoreAngularStarter.Common.csproj" />
     <ProjectReference Include="..\ShadowBox.AutomaticDI\ShadowBox.AutomaticDI.csproj" />
   </ItemGroup>
 

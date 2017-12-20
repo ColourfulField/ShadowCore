@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DotnetCoreAngularStarter.DAL\DotnetCoreAngularStarter.DAL.csproj" />
-    <ProjectReference Include="..\DotnetCoreAngularStarter.Infrastructure\DotnetCoreAngularStarter.Infrastructure.csproj" />
+    <ProjectReference Include="..\DotnetCoreAngularStarter.Common\DotnetCoreAngularStarter.Common.csproj" />
     <ProjectReference Include="..\DotnetCoreAngularStarter.Mappers.DTO-EntityFramework\DotnetCoreAngularStarter.Mappers.DTO-EntityFramework.csproj" />
     <ProjectReference Include="..\DotnetCoreAngularStarter.Models.DTO\DotnetCoreAngularStarter.Models.DTO.csproj" />
     <ProjectReference Include="..\DotnetCoreAngularStarter.Models.EntityFramework\DotnetCoreAngularStarter.Models.EntityFramework.csproj" />

@@ -10,9 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Options;
-using DotnetCoreAngularStarter.Infrastructure.Options;
+using DotnetCoreAngularStarter.Common.Options;
 using DotnetCoreAngularStarter.ManualDI;
+using Serilog;
 using ShadowBox.AutomaticDI;
 using ShadowBox.Mapper.Extensions;
 using ShadowBox.Utilities.Localization;
@@ -23,6 +23,12 @@ namespace DotnetCoreAngularStarter.API
     {
         public Startup(IConfiguration configuration)
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .Enrich.FromLogContext() // ensures that any events written directly through Serilog will seamlessly pick up correlation ids like RequestId from ASP.NET
+                //.WriteTo.Logger()
+                .CreateLogger();
+
             Configuration = configuration;
         }
 

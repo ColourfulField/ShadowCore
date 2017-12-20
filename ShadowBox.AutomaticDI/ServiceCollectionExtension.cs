@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,6 +8,7 @@ using ShadowBox.AutomaticDI.Interfaces;
 
 namespace ShadowBox.AutomaticDI
 {
+    [Obsolete("This is the class for basic .NET Core DI. It is obsolete now, use AutoRegistrationModule from Autofac instead.")]
     public static class ServiceCollectionExtension
     {
         public static IServiceCollection AddShadowBoxDependencyInjection(this IServiceCollection services, IEnumerable<RuntimeLibrary> runtimeLibraries)

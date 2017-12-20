@@ -1,6 +1,6 @@
 ﻿namespace ShadowBox.Utilities.Models
 {
-    public class SortOptions
+    public class BaseFilter
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }

@@ -1,40 +1,56 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using DotnetCoreAngularStarter.API.Controllers.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-using DotnetCoreAngularStarter.BusinessLogic.Services;
 using DotnetCoreAngularStarter.BusinessLogic.Services.Abstract;
 using DotnetCoreAngularStarter.Models.VM;
 using DotnetCoreAngularStarter.Models.DTO;
+using Microsoft.Extensions.Logging;
 using ShadowBox.Mapper.Abstract;
+using ShadowBox.Mapper.Extensions;
 
 namespace DotnetCoreAngularStarter.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    public class ValuesController : Controller
+    [Route("api/[controller]")]
+    public class ValuesController : BaseController
     {
         private readonly INoteService _noteService;
         private readonly IManuallyRegisteredService _manuallyRegisteredService;
-        private readonly IMapper _mapper;
-        private readonly IStringLocalizer<NoteService> _localizer;
+        private readonly IStringLocalizer<ValuesController> _localizer;
 
-        public ValuesController(INoteService noteService, IManuallyRegisteredService manuallyRegisteredService, IMapper mapper, IStringLocalizer<NoteService> localizer)
+        public ValuesController(
+            IMapper mapper,
+            ILogger<ValuesController> logger,
+            INoteService noteService,
+            IManuallyRegisteredService manuallyRegisteredService,
+            IStringLocalizer<ValuesController> localizer
+        ) :base(logger, mapper)
         {
             _noteService = noteService;
             _manuallyRegisteredService = manuallyRegisteredService;
-            _mapper = mapper;
             _localizer = localizer;
         }
+
         // GET api/values
         [HttpGet]
-        public async Task<NoteVM> GetNote()
+        public async Task<NoteVM> Get()
         {
             var note = await _noteService.GetNote();
-            var a = System.Globalization.CultureInfo.CurrentCulture;
             return await _mapper.Map<NoteDTO, NoteVM>(note);
         }
 
         [HttpGet]
+        [Route("text/{text}")]
+        public async Task<List<NoteVM>> GetByText(string text)
+        {
+            var notes = await _noteService.GetNotesByText("q");
+            return await _mapper.Map<NoteDTO, NoteVM>(notes).ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("value")]
         public async Task<string> GetValue()
         {
             return _manuallyRegisteredService.GetValue();
@@ -51,19 +67,20 @@ namespace DotnetCoreAngularStarter.API.Controllers
         [HttpPost]
         public async Task<Guid> Post(string noteText)
         {
-           return await _noteService.AddNote(noteText ?? "qwe");
+            return await _noteService.AddNote(noteText ?? "qwe");
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
+            NoContentResponse();
         }
     }
 }

@@ -12,6 +12,8 @@
     <PackageReference Include="Autofac" Version="4.6.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Serilog" Version="2.6.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DotnetCoreAngularStarter.BusinessLogic\DotnetCoreAngularStarter.BusinessLogic.csproj" />
-    <ProjectReference Include="..\DotnetCoreAngularStarter.Infrastructure\DotnetCoreAngularStarter.Infrastructure.csproj" />
+    <ProjectReference Include="..\DotnetCoreAngularStarter.Common\DotnetCoreAngularStarter.Common.csproj" />
     <ProjectReference Include="..\DotnetCoreAngularStarter.ManualDI\DotnetCoreAngularStarter.ManualDI.csproj" />
     <ProjectReference Include="..\DotnetCoreAngularStarter.Mappers.VM-DTO\DotnetCoreAngularStarter.Mappers.VM-DTO.csproj" />
     <ProjectReference Include="..\DotnetCoreAngularStarter.Models.VM\DotnetCoreAngularStarter.Models.VM.csproj" />

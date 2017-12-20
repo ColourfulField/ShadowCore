@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using ShadowBox.Mapper.Abstract;
 using ShadowBox.Mapper.Exceptions;
-using ShadowBox.Utilities.Reflection;
+using ShadowBox.Utilities.Extensions.Reflection;
 
 namespace ShadowBox.Mapper
 {
