@@ -16,7 +16,7 @@ namespace DotnetCoreAngularStarter.Models.EntityFramework.Abstract
     //    EntityEntry Entry(object entity);
     //    int SaveChanges();
     //    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
-    //    string ConnectionString { get; set; }
+    //    string SqlConnectionString { get; set; }
     //    bool AutoDetectChangedEnabled { get; set; }
     //    void ExecuteSqlCommand(string p, params object[] o);
     //    void ExecuteSqlCommand(string p);

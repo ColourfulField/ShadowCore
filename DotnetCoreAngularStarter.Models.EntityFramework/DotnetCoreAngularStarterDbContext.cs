@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 using DotnetCoreAngularStarter.Models.EntityFramework.Abstract;
 using DotnetCoreAngularStarter.Models.EntityFramework.Domain;
 using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Configuration;
 
 namespace DotnetCoreAngularStarter.Models.EntityFramework
 {
@@ -21,23 +21,34 @@ namespace DotnetCoreAngularStarter.Models.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_databaseOptions.ConnectionString);
+            optionsBuilder.UseSqlServer(_databaseOptions.SqlConnectionString);
         }
 
         #endregion
 
         public DbSet<Note> Notes { get; set; }
-
     }
 
     public class DotnetCoreAngularStarterDbContextFactory : IDesignTimeDbContextFactory<DotnetCoreAngularStarterDbContext>
     {
         public DotnetCoreAngularStarterDbContext CreateDbContext(string[] options)
         {
+            //Get the project base directory (AppContext.BaseDirectory return assembly folder, i.e. "bin/Debug/netcoreapp...")
+            string basePath = AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.LastIndexOf("bin", StringComparison.InvariantCulture));
+            string envName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(basePath)
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{envName}.json", true)
+                .Build();
+
+            var connectionString = configuration.GetSection("DatabaseOptions:SqlConnectionString").Value;
+            IOptions<DatabaseOptions> dbOptions = new OptionsWrapper<DatabaseOptions>(new DatabaseOptions { SqlConnectionString = connectionString });
 
             var builder = new DbContextOptionsBuilder<DotnetCoreAngularStarterDbContext>();
-            builder.UseSqlServer(_databaseOptinos.Value.ConnectionString);
-            return new DotnetCoreAngularStarterDbContext(_databaseOptinos);
+            builder.UseSqlServer(connectionString);
+            return new DotnetCoreAngularStarterDbContext(dbOptions);
         }
     }
 }

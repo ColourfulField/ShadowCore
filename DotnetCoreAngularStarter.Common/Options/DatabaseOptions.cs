@@ -2,6 +2,6 @@ namespace DotnetCoreAngularStarter.Common.Options
 {
     public class DatabaseOptions
     {
-        public string ConnectionString { get; set; }
+        public string SqlConnectionString { get; set; }
     }
 }
