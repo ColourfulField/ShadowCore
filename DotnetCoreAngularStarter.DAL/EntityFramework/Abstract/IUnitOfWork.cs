@@ -7,6 +7,7 @@ namespace DotnetCoreAngularStarter.DAL.EntityFramework.Abstract
     public interface IUnitOfWork : IScopedLifetime
     {
         IRepository<T> Repository<T>() where T : class;
+        void SeedDatabase();
         int SaveChanges();
         int SaveChanges(bool acceptAllChangesOnSuccess);
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));

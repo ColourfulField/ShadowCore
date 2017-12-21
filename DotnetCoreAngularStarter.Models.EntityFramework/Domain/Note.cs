@@ -9,6 +9,7 @@ namespace DotnetCoreAngularStarter.Models.EntityFramework.Domain
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
         public int Number { get; set; }
-        public Note ParentNote { get; set; }
+        public Guid NoteId { get; set; }
+        public virtual Note ParentNote { get; set; }
     }
 }

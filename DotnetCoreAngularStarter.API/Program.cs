@@ -1,6 +1,8 @@
 using Autofac.Extensions.DependencyInjection;
+using DotnetCoreAngularStarter.API.Initialization;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
@@ -10,7 +12,11 @@ namespace DotnetCoreAngularStarter.API
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            var host = BuildWebHost(args);
+            
+            DatabaseInitializer.SeedDatabases(host.Services.CreateScope());
+
+            host.Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
