@@ -1,0 +1,7 @@
+namespace ShadowCore.Infrastructure.Options
+{
+    public class DatabaseOptions
+    {
+        public string ConnectionString { get; set; }
+    }
+}

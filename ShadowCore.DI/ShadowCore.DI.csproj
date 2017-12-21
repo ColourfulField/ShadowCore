@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShadowCore.BusinessLogic\ShadowCore.BusinessLogic.csproj" />
+    <ProjectReference Include="..\ShadowCore.Common\ShadowCore.Common.csproj" />
+    <ProjectReference Include="..\ShadowCore.Models.DTO\ShadowCore.Models.DTO.csproj" />
+    <ProjectReference Include="..\ShadowCore.Models.EntityFramework\ShadowCore.Models.EntityFramework.csproj" />
+    <ProjectReference Include="..\ShadowCore.Models.VM\ShadowCore.Models.VM.csproj" />
+  </ItemGroup>
+
+</Project>

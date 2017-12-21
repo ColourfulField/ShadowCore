@@ -1,3 +1,0 @@
-﻿namespace DotnetCoreAngularStarter.Common.Options
-{
-}
