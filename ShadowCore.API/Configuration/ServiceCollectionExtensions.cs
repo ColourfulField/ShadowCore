@@ -92,6 +92,8 @@ namespace ShadowCore.API.Configuration
         /// <param name="services"></param>
         public static void AddBearerTokenAuthentication(this IServiceCollection services)
         {
+            // We need to register and resolve this service here, because at this point
+            // we don't have access to Autofac registrations
             services.AddSingleton<IBearerTokenService, BearerTokenService>();
             var serviceProvider = services.BuildServiceProvider();
             var tokenService = serviceProvider.GetService<IBearerTokenService>();

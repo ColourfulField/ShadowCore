@@ -3,7 +3,7 @@ using ShadowTools.AutomaticDI.Interfaces;
 
 namespace ShadowCore.BusinessLogic.Services.Abstract
 {
-    public interface IBearerTokenService : ISingletonLifetime
+    public interface IBearerTokenService
     {
         SecurityKey GenerateSingingKey(string secret = null);
         string GenerateToken();
