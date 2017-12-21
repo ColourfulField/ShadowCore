@@ -51,10 +51,10 @@ namespace ShadowCore.API
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            //TODO change solutionName key to be array
-            var runtimeLibraries = DependencyContext.Default.RuntimeLibraries
-                .Where(a => a.Name.Contains(Configuration["SolutionName"]) || a.Name.Contains("ShadowBox"));
+            var assemblyNames = Configuration.GetSection("AssemblyNamesForDIAutoRegistration").Get<string[]>();
+            var runtimeLibraries = DependencyContext.Default.RuntimeLibraries.Where(a => assemblyNames.Any(x => a.Name.Contains(x)));
             builder.RegisterModule(new AutoRegistrationModule(runtimeLibraries));
+
             builder.RegisterModule(new ManualRegistrationModule());
         }
     }

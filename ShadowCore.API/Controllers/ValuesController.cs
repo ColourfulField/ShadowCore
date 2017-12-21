@@ -13,7 +13,6 @@ using ShadowBox.Mapper.Extensions;
 
 namespace ShadowCore.API.Controllers
 {
-    /// <inheritdoc/>
     /// <summary>
     /// Demo controller showcasing different features of the project
     /// </summary>
