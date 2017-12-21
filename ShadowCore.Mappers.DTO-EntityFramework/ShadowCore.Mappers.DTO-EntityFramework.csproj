@@ -7,7 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ShadowCore.Models.DTO\ShadowCore.Models.DTO.csproj" />
     <ProjectReference Include="..\ShadowCore.Models.EntityFramework\ShadowCore.Models.EntityFramework.csproj" />
-    <ProjectReference Include="..\ShadowBox.Mapper\ShadowBox.Mapper.csproj" />
+    <ProjectReference Include="..\ShadowTools.Mapper\ShadowTools.Mapper.csproj" />
   </ItemGroup>
 
 </Project>

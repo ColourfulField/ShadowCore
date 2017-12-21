@@ -4,7 +4,7 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowCore.BusinessLogic", "ShadowCore.BusinessLogic\ShadowCore.BusinessLogic.csproj", "{B8764E1B-5224-4ACB-B312-957E02C99815}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowBox.AutomaticDI", "ShadowBox.AutomaticDI\ShadowBox.AutomaticDI.csproj", "{FE8B7966-9E32-417D-8B61-E5201BD0274D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowTools.AutomaticDI", "ShadowTools.AutomaticDI\ShadowTools.AutomaticDI.csproj", "{FE8B7966-9E32-417D-8B61-E5201BD0274D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowCore.API", "ShadowCore.API\ShadowCore.API.csproj", "{A47BA284-A56A-4BF2-9FE6-883975C0C808}"
 EndProject
@@ -14,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowCore.Models.VM", "Sha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowCore.Models.DTO", "ShadowCore.Models.DTO\ShadowCore.Models.DTO.csproj", "{3BDC24B6-E31A-49A9-B941-A6C4EB3387A4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowBox.Mapper", "ShadowBox.Mapper\ShadowBox.Mapper.csproj", "{48E84275-7092-4703-95D4-389E2C6713EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowTools.Mapper", "ShadowTools.Mapper\ShadowTools.Mapper.csproj", "{48E84275-7092-4703-95D4-389E2C6713EF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowCore.Common", "ShadowCore.Common\ShadowCore.Common.csproj", "{D881D2F5-EA34-4BED-BB0D-5F8C78E527B7}"
 EndProject
@@ -34,11 +34,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E07D1D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DFBFDFAC-EC80-40B9-B02F-EE65492E4304}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowBox.Utilities", "ShadowBox.Utilities\ShadowBox.Utilities.csproj", "{730539B7-DBDE-4CBB-AE23-0ADA50FC463D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowTools.Utilities", "ShadowTools.Utilities\ShadowTools.Utilities.csproj", "{730539B7-DBDE-4CBB-AE23-0ADA50FC463D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowCore.DI", "ShadowCore.DI\ShadowCore.DI.csproj", "{2D95FD10-8926-4910-B07E-A7BA8A66A068}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShadowBox", "ShadowBox", "{9FEDC776-CA3F-4397-9884-0B89B533316C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShadowTools", "ShadowTools", "{9FEDC776-CA3F-4397-9884-0B89B533316C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayer", "DataAccessLayer", "{31133CFF-6752-42D3-B090-6FD2615A344D}"
 EndProject

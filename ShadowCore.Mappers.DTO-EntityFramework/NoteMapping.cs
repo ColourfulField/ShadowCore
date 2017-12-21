@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using ShadowBox.Mapper.Abstract;
+using ShadowTools.Mapper.Abstract;
 using ShadowCore.Models.EntityFramework.Domain;
 using ShadowCore.Models.DTO;
 

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using ShadowBox.AutomaticDI.Interfaces;
+using ShadowTools.AutomaticDI.Interfaces;
 
 namespace ShadowCore.Models.EntityFramework.Abstract
 {

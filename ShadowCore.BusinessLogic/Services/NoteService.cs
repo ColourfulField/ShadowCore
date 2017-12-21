@@ -7,10 +7,10 @@ using ShadowCore.BusinessLogic.Services.Abstract;
 using ShadowCore.DAL.EntityFramework.Abstract;
 using ShadowCore.Models.DTO;
 using ShadowCore.Models.EntityFramework.Domain;
-using ShadowBox.Mapper.Abstract;
-using ShadowBox.Utilities.Extensions;
-using ShadowBox.Utilities.Models;
-using ShadowBox.Mapper.Extensions;
+using ShadowTools.Mapper.Abstract;
+using ShadowTools.Utilities.Extensions;
+using ShadowTools.Utilities.Models;
+using ShadowTools.Mapper.Extensions;
 
 namespace ShadowCore.BusinessLogic.Services
 {

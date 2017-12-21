@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ShadowCore.Models.DTO;
-using ShadowBox.AutomaticDI.Interfaces;
+using ShadowTools.AutomaticDI.Interfaces;
 
 namespace ShadowCore.BusinessLogic.Services.Abstract
 {

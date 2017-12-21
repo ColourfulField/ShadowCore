@@ -33,9 +33,9 @@
     <ProjectReference Include="..\ShadowCore.Mappers.VM-DTO\ShadowCore.Mappers.VM-DTO.csproj" />
     <ProjectReference Include="..\ShadowCore.Models.VM\ShadowCore.Models.VM.csproj" />
     <ProjectReference Include="..\ShadowCore.Models.DTO\ShadowCore.Models.DTO.csproj" />
-    <ProjectReference Include="..\ShadowBox.AutomaticDI\ShadowBox.AutomaticDI.csproj" />
-    <ProjectReference Include="..\ShadowBox.Mapper\ShadowBox.Mapper.csproj" />
-    <ProjectReference Include="..\ShadowBox.Utilities\ShadowBox.Utilities.csproj" />
+    <ProjectReference Include="..\ShadowTools.AutomaticDI\ShadowTools.AutomaticDI.csproj" />
+    <ProjectReference Include="..\ShadowTools.Mapper\ShadowTools.Mapper.csproj" />
+    <ProjectReference Include="..\ShadowTools.Utilities\ShadowTools.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

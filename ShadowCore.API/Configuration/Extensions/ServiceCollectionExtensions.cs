@@ -11,8 +11,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Tokens;
-using ShadowBox.Mapper.Options;
-using ShadowBox.Utilities.Localization;
+using ShadowTools.Mapper.Options;
+using ShadowTools.Utilities.Localization;
 using Swashbuckle.AspNetCore.Swagger;
 using ShadowCore.BusinessLogic.Services.Abstract;
 
@@ -32,7 +32,7 @@ namespace ShadowCore.API.Configuration.Extensions
         {
             services.Configure<DatabaseOptions>(configuration.GetSection("DatabaseOptions"));
 
-            // Setups max depth for automatic mapping using ShadowBox.Mapper
+            // Setups max depth for automatic mapping using ShadowTools.Mapper
             services.Configure<AutomapperOptions>(x => x.MaxDepth = 3);
         }
 

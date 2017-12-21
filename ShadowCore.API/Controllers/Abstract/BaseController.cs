@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ShadowBox.Mapper.Abstract;
+using ShadowTools.Mapper.Abstract;
 
 namespace ShadowCore.API.Controllers.Abstract
 {

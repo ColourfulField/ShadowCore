@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using ShadowBox.AutomaticDI.Interfaces;
+using ShadowTools.AutomaticDI.Interfaces;
 
 namespace ShadowCore.DAL.EntityFramework.Abstract
 {

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShadowTools.AutomaticDI\ShadowTools.AutomaticDI.csproj" />
+    <ProjectReference Include="..\ShadowTools.Utilities\ShadowTools.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

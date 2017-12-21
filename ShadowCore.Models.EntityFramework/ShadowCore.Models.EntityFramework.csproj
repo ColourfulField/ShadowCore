@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShadowCore.Common\ShadowCore.Common.csproj" />
-    <ProjectReference Include="..\ShadowBox.AutomaticDI\ShadowBox.AutomaticDI.csproj" />
+    <ProjectReference Include="..\ShadowTools.AutomaticDI\ShadowTools.AutomaticDI.csproj" />
   </ItemGroup>
 
 </Project>

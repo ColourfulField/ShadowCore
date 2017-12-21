@@ -12,7 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ShadowCore.Common\ShadowCore.Common.csproj" />
     <ProjectReference Include="..\ShadowCore.Models.EntityFramework\ShadowCore.Models.EntityFramework.csproj" />
-    <ProjectReference Include="..\ShadowBox.AutomaticDI\ShadowBox.AutomaticDI.csproj" />
+    <ProjectReference Include="..\ShadowTools.AutomaticDI\ShadowTools.AutomaticDI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

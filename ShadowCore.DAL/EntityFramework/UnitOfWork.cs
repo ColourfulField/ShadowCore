@@ -5,7 +5,7 @@ using ShadowCore.DAL.EntityFramework.Abstract;
 using ShadowCore.DAL.EntityFramework.Repository;
 using ShadowCore.Common;
 using ShadowCore.Models.EntityFramework.Abstract;
-using ShadowBox.AutomaticDI;
+using ShadowTools.AutomaticDI;
 
 namespace ShadowCore.DAL.EntityFramework
 {

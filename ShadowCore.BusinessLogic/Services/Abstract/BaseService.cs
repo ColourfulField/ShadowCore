@@ -1,5 +1,5 @@
 using ShadowCore.DAL.EntityFramework.Abstract;
-using ShadowBox.Mapper.Abstract;
+using ShadowTools.Mapper.Abstract;
 
 namespace ShadowCore.BusinessLogic.Services.Abstract
 {

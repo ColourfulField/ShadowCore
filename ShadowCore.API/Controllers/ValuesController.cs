@@ -8,8 +8,8 @@ using ShadowCore.BusinessLogic.Services.Abstract;
 using ShadowCore.Models.VM;
 using ShadowCore.Models.DTO;
 using Microsoft.Extensions.Logging;
-using ShadowBox.Mapper.Abstract;
-using ShadowBox.Mapper.Extensions;
+using ShadowTools.Mapper.Abstract;
+using ShadowTools.Mapper.Extensions;
 
 namespace ShadowCore.API.Controllers
 {

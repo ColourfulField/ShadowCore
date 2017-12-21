@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
 using ShadowCore.DI;
-using ShadowBox.AutomaticDI;
+using ShadowTools.AutomaticDI;
 
 namespace ShadowCore.API
 {

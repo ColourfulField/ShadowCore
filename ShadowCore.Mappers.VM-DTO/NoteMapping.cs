@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using ShadowCore.Models.VM;
 using ShadowCore.Models.DTO;
-using ShadowBox.Mapper.Abstract;
+using ShadowTools.Mapper.Abstract;
 
 namespace MiUtility.Areas.Agent.Sap.Mappings
 {

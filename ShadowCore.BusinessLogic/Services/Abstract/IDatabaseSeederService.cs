@@ -1,4 +1,4 @@
-using ShadowBox.AutomaticDI.Interfaces;
+using ShadowTools.AutomaticDI.Interfaces;
 
 namespace ShadowCore.BusinessLogic.Services.Abstract
 {

@@ -2,7 +2,7 @@ using System.Linq;
 using ShadowCore.Common;
 using ShadowCore.Models.EntityFramework.Abstract;
 using ShadowCore.Models.EntityFramework.Domain;
-using ShadowBox.AutomaticDI;
+using ShadowTools.AutomaticDI;
 
 namespace ShadowCore.DAL.EntityFramework.Repository
 {
