@@ -1,12 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Autofac;
-using ShadowCore.API.Configuration.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
+using ShadowCore.API.Configuration;
 using ShadowCore.DI;
 using ShadowTools.AutomaticDI;
 

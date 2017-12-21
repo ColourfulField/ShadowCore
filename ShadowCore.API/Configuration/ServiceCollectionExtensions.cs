@@ -16,7 +16,7 @@ using ShadowTools.Utilities.Localization;
 using Swashbuckle.AspNetCore.Swagger;
 using ShadowCore.BusinessLogic.Services.Abstract;
 
-namespace ShadowCore.API.Configuration.Extensions
+namespace ShadowCore.API.Configuration
 {
     /// <summary>
     /// Contains shorthand methods for service configuration in Startup

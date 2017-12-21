@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Serilog;
 
-namespace ShadowCore.API.Configuration.Extensions
+namespace ShadowCore.API.Configuration
 {
     /// <summary>
     /// Contains shorthand methods for HTTP request pipeline configuration in Startup
