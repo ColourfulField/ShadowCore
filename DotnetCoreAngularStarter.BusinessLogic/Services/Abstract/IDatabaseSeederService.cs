@@ -4,6 +4,6 @@ namespace DotnetCoreAngularStarter.BusinessLogic.Services.Abstract
 {
     public interface IDatabaseSeederService: ITransientLifetime
     {
-        void SeedDatabases();
+        void EnsureDatabasesSeeded();
     }
 }

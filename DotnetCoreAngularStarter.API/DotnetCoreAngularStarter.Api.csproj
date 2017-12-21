@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.0\DotnetCoreAngularStarter.API.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
@@ -12,8 +16,10 @@
     <PackageReference Include="Autofac" Version="4.6.2" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="2.0.0" />
     <PackageReference Include="Serilog" Version="2.6.0" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,7 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DotnetCoreAngularStarter.BusinessLogic\DotnetCoreAngularStarter.BusinessLogic.csproj" />
     <ProjectReference Include="..\DotnetCoreAngularStarter.Common\DotnetCoreAngularStarter.Common.csproj" />
-    <ProjectReference Include="..\DotnetCoreAngularStarter.ManualDI\DotnetCoreAngularStarter.ManualDI.csproj" />
+    <ProjectReference Include="..\DotnetCoreAngularStarter.DI\DotnetCoreAngularStarter.DI.csproj" />
     <ProjectReference Include="..\DotnetCoreAngularStarter.Mappers.VM-DTO\DotnetCoreAngularStarter.Mappers.VM-DTO.csproj" />
     <ProjectReference Include="..\DotnetCoreAngularStarter.Models.VM\DotnetCoreAngularStarter.Models.VM.csproj" />
     <ProjectReference Include="..\DotnetCoreAngularStarter.Models.DTO\DotnetCoreAngularStarter.Models.DTO.csproj" />

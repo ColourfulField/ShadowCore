@@ -26,9 +26,9 @@ namespace DotnetCoreAngularStarter.DAL.EntityFramework
             return (BaseRepository<T>)repositoryInstance;
         }
 
-        public void SeedDatabase()
+        public void EnsureDatabaseSeeded()
         {
-            _db.SeedDatabase();
+            _db.EnsureDatabaseSeeded();
         }
 
         public int SaveChanges()

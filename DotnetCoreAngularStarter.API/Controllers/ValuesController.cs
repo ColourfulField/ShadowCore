@@ -13,7 +13,10 @@ using ShadowBox.Mapper.Extensions;
 
 namespace DotnetCoreAngularStarter.API.Controllers
 {
-    [Route("api/[controller]")]
+    /// <inheritdoc/>
+    /// <summary>
+    /// Demo controller showcasing different features of the project
+    /// </summary>
     public class ValuesController : BaseController
     {
         private readonly INoteService _noteService;
@@ -38,7 +41,7 @@ namespace DotnetCoreAngularStarter.API.Controllers
         public async Task<NoteVM> Get()
         {
             var note = await _noteService.GetNote();
-            return await _mapper.Map<NoteDTO, NoteVM>(note);
+            return await Mapper.Map<NoteDTO, NoteVM>(note);
         }
 
         [HttpGet]
@@ -46,7 +49,7 @@ namespace DotnetCoreAngularStarter.API.Controllers
         public async Task<List<NoteVM>> GetByText(string text)
         {
             var notes = await _noteService.GetNotesByText("q");
-            return await _mapper.Map<NoteDTO, NoteVM>(notes).ToListAsync();
+            return await Mapper.Map<NoteDTO, NoteVM>(notes).ToListAsync();
         }
 
         [HttpGet]
@@ -65,14 +68,14 @@ namespace DotnetCoreAngularStarter.API.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<Guid> Post(string noteText)
+        public async Task<Guid> Post([FromBody] string noteText)
         {
             return await _noteService.AddNote(noteText ?? "qwe");
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Put([FromQuery] int id, [FromBody] string value)
         {
         }
 

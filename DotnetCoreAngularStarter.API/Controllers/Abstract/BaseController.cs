@@ -1,28 +1,47 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ShadowBox.Mapper.Abstract;
 
 namespace DotnetCoreAngularStarter.API.Controllers.Abstract
 {
+    /// <summary>
+    /// Base class for API controllers. Contains API and default Route attributes along with [Authorize] attribute.
+    /// Also contains common Controller functionality
+    /// </summary>
     //[Authorize]
+    [ApiVersion("1")]
+    [Route("api/v1/[controller]")]
     public abstract class BaseController : Controller
     {
-        protected readonly ILogger _logger;
-        protected readonly IMapper _mapper;
+        protected readonly ILogger Logger;
+        protected readonly IMapper Mapper;
 
+        /// <summary>
+        /// Base constructor, which initializes Logger and Mapper fields
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="mapper"></param>
         protected BaseController(ILogger logger = null, IMapper mapper = null)
         {
-            _logger = logger;
-            _mapper = mapper;
+            Logger = logger;
+            Mapper = mapper;
         }
 
+        /// <summary>
+        /// Sets Response code to "No Content"
+        /// </summary>
         protected void NoContentResponse()
         {
             Response.StatusCode = 204;
         }
 
-        protected IActionResult FormattedResponse(object response)
+        /// <summary>
+        /// Abstraction for response formatting
+        /// </summary>
+        /// <typeparam name="T">Response Type</typeparam>
+        /// <param name="response">Response object</param>
+        /// <returns></returns>
+        protected IActionResult FormattedResponse<T>(T response)
         {
             return Json(response);
         }

@@ -1,5 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
 using Autofac.Extensions.DependencyInjection;
-using DotnetCoreAngularStarter.API.Initialization;
+using DotnetCoreAngularStarter.API.Configuration.Helpers;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,12 +9,13 @@ using Serilog;
 
 namespace DotnetCoreAngularStarter.API
 {
+    [SuppressMessage("", "CS1591:MissingXmlDocumentation")]
     public class Program
     {
         public static void Main(string[] args)
         {
             var host = BuildWebHost(args);
-            
+
             DatabaseInitializer.SeedDatabases(host.Services.CreateScope());
 
             host.Run();

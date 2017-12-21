@@ -12,14 +12,14 @@ namespace DotnetCoreAngularStarter.BusinessLogic.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void SeedDatabases()
+        public void EnsureDatabasesSeeded()
         {
-            SeedSqlDatabase();
+            EnsureSqlSeeded();
         }
 
-        private void SeedSqlDatabase()
+        private void EnsureSqlSeeded()
         {
-            _unitOfWork.SeedDatabase();
+            _unitOfWork.EnsureDatabaseSeeded();
         }
     }
 }

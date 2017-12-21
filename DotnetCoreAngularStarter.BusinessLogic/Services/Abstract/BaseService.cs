@@ -5,13 +5,13 @@ namespace DotnetCoreAngularStarter.BusinessLogic.Services.Abstract
 {
     public abstract class BaseService
     {
-        protected readonly IUnitOfWork _unitOfWork;
-        protected readonly IMapper _mapper;
+        protected readonly IUnitOfWork UnitOfWork;
+        protected readonly IMapper Mapper;
 
-        protected BaseService(IUnitOfWork unitOfWork, IMapper mapper)
+        protected BaseService(IUnitOfWork unitOfWork = null, IMapper mapper = null)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
+            UnitOfWork = unitOfWork;
+            Mapper = mapper;
         }
     }
 }

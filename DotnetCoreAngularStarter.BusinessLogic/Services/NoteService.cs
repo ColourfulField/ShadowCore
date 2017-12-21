@@ -70,17 +70,17 @@ namespace DotnetCoreAngularStarter.BusinessLogic.Services
 
 
             note.ParentNote.ParentNote = note;
-            return await _mapper.Map<Note, NoteDTO>(note);
+            return await Mapper.Map<Note, NoteDTO>(note);
         }
 
         public async Task<IList<NoteDTO>> GetNotesByText(string text)
         {
-            var notes = _unitOfWork.Repository<Note>()
+            var notes = UnitOfWork.Repository<Note>()
                                    .GetAll()
                                    .Where(x => x.Text.Contains(text))
                                    .ApplyPagination(new BaseFilter());
 
-            return await _mapper.Map<Note, NoteDTO>(notes).ToListAsync();
+            return await Mapper.Map<Note, NoteDTO>(notes).ToListAsync();
         }
 
         public async Task<Guid> AddNote(string text)
@@ -91,8 +91,8 @@ namespace DotnetCoreAngularStarter.BusinessLogic.Services
                 CreationDate = DateTime.Now
             };
 
-            _unitOfWork.Repository<Note>().Add(note);
-            await _unitOfWork.SaveChangesAsync();
+            UnitOfWork.Repository<Note>().Add(note);
+            await UnitOfWork.SaveChangesAsync();
 
             return note.Id;
         }

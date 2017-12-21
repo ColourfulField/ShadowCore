@@ -1,25 +1,18 @@
-using System.Collections.Generic;
-using System.Globalization;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Autofac;
-using DotnetCoreAngularStarter.API.Initialization;
+using DotnetCoreAngularStarter.API.Configuration.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.DependencyModel;
-using Microsoft.Extensions.Localization;
-using DotnetCoreAngularStarter.Common.Options;
-using DotnetCoreAngularStarter.ManualDI;
-using Serilog;
+using DotnetCoreAngularStarter.DI;
 using ShadowBox.AutomaticDI;
-using ShadowBox.Mapper.Extensions;
-using ShadowBox.Utilities.Localization;
 
 namespace DotnetCoreAngularStarter.API
 {
+    [SuppressMessage("", "CS1591:MissingXmlDocumentation")]
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -33,18 +26,20 @@ namespace DotnetCoreAngularStarter.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
+            services.AddBearerTokenAuthentication();
+            services.AddSwagger();
             services.ConfigureLocalization();
             services.ConfigureAppOptions(Configuration);
-            services.ConfigureAutomaticMapper(maxDepth: 5);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
-            app.UseLocalization();
             app.UseSerilog();
+            app.UseLocalization();
+            app.UseAuthentication();
+            app.UseSwashbuckle();
 
             if (env.IsDevelopment())
             {

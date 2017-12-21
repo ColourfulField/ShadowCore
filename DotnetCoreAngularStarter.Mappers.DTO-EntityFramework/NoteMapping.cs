@@ -5,11 +5,11 @@ using DotnetCoreAngularStarter.Models.DTO;
 
 namespace DotnetCoreAngularStarter.Mappers.BL_DL
 {
-    public class NoteMappingDtoToVm : AsyncMapping<NoteDTO, Note>
+    public class NoteMappingDTOtoVM : AsyncMapping<NoteDTO, Note>
     {
         private readonly IAutoMapService _autoMapService;
 
-        public NoteMappingDtoToVm(IAutoMapService autoMapService)
+        public NoteMappingDTOtoVM(IAutoMapService autoMapService)
         {
             _autoMapService = autoMapService;
         }
@@ -20,11 +20,11 @@ namespace DotnetCoreAngularStarter.Mappers.BL_DL
         }
     }
 
-    public class NoteMappingVmToDto : AsyncMapping<Note, NoteDTO>
+    public class NoteMappingVMtoDTO : AsyncMapping<Note, NoteDTO>
     {
         private readonly IAutoMapService _autoMapService;
 
-        public NoteMappingVmToDto(IAutoMapService autoMapService)
+        public NoteMappingVMtoDTO(IAutoMapService autoMapService)
         {
             _autoMapService = autoMapService;
         }

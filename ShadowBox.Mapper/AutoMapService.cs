@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using ShadowBox.Mapper.Abstract;
 using ShadowBox.Mapper.Exceptions;
+using ShadowBox.Mapper.Options;
 using ShadowBox.Utilities.Extensions.Reflection;
 
 namespace ShadowBox.Mapper
@@ -13,16 +15,18 @@ namespace ShadowBox.Mapper
     {
         private readonly Func<IMapper> _mapper; // Prevents Circular dependency
 
-        public AutoMapService(Func<IMapper> mapper)
+        public AutoMapService(Func<IMapper> mapper, IOptions<AutomapperOptions> automapperOptions)
         {
             _mapper = mapper;
+            _defaultMaxDepth = automapperOptions?.Value.MaxDepth ?? 0;
         }
-        public static int DefaultMaxDepth { get; set; } = 3;
+
+        private readonly int _defaultMaxDepth;
 
         public async Task AutoMap<TSource, TDestination>(TSource source, TDestination destination = null, int? maxDepth = null,
             IEnumerable<string> exclude = null) where TDestination : class
         {
-            maxDepth = maxDepth ?? DefaultMaxDepth;
+            maxDepth = maxDepth ?? _defaultMaxDepth;
             exclude = exclude ?? new List<string>();
             await MapObjectFields(source, destination, 0, maxDepth.Value, exclude);
         }
@@ -32,7 +36,7 @@ namespace ShadowBox.Mapper
         {
             if (currentDepth > maxDepth)
             {
-                throw new DepthException("Current mapping depth exceeds max depth");
+                throw new DepthException($"Current mapping depth <{currentDepth}> exceeds max depth <{maxDepth}>");
             }
             var sourceProperties = source.GetType().GetProperties();
             var destinationProperties = destination.GetType().GetProperties();
@@ -45,14 +49,12 @@ namespace ShadowBox.Mapper
                     continue;
                 }
 
-                //Simple Types
                 var isMappingSuccesfull = TryMapSimpleObjects(source, destination, sourceProperty, destinationProperty);
                 if (isMappingSuccesfull)
                 {
                     continue;
                 }
 
-                //Complex Types
                 await TryMapComplexObjects(source, destination, sourceProperty, destinationProperty, maxDepth);
             }
         }
@@ -90,30 +92,18 @@ namespace ShadowBox.Mapper
                 source = source.Clone(maxDepth);
             }
 
-            //TODO use depth to avoid cyclomatic dependencies. Use pre-map checker, which will cut out all dependencies, which are way too deep
-            //TODO THERE IS A NEED TO CREATE CLONED SOURCE object
             //TODO lists?
-            //await RemoveCyclomaticDependencies();
-            //await ApplyDepthFilter();
             if (!sourcePropertyType.IsSimple() && !destinationPropertyType.IsSimple() && sourceProperty.GetValue(source) != null)
             {
-                // if (currentDepth <= maxDepth)
-                {
-                    var mapper = _mapper();
-                    var mapMethod = mapper.GetType().GetMethod("Map");
-                    var genericMethod = mapMethod.MakeGenericMethod(sourcePropertyType, destinationPropertyType);
-                    var sourceObject = Convert.ChangeType(sourceProperty.GetValue(source), sourcePropertyType);
-                    var destinationObject = Activator.CreateInstance(destinationPropertyType);
-                    await (Task)genericMethod.Invoke(mapper, new[] { sourceObject, destinationObject });
 
-                    //await
+                var mapper = _mapper();
+                var mapMethod = mapper.GetType().GetMethod("Map");
+                var genericMethod = mapMethod.MakeGenericMethod(sourcePropertyType, destinationPropertyType);
+                var sourceObject = Convert.ChangeType(sourceProperty.GetValue(source), sourcePropertyType);
+                var destinationObject = Activator.CreateInstance(destinationPropertyType);
+                await (Task) genericMethod.Invoke(mapper, new[] {sourceObject, destinationObject});
 
-                    destinationProperty.SetValue(destination, destinationObject);
-                }
-                //  else
-                //{
-                //    destinationProperty.SetValue(destination, null);
-                //}
+                destinationProperty.SetValue(destination, destinationObject);
             }
             return true;
         }

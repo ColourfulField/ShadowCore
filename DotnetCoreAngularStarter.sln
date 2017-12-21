@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.0
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCoreAngularStarter.BusinessLogic", "DotnetCoreAngularStarter.BusinessLogic\DotnetCoreAngularStarter.BusinessLogic.csproj", "{B8764E1B-5224-4ACB-B312-957E02C99815}"
 EndProject
@@ -30,17 +30,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{EBA7E4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mappers", "Mappers", "{638407CB-1E88-4157-999D-E118F6BE6F27}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Miscellanous", "Miscellanous", "{E07D1DF0-6F40-45E2-B4EB-10058A140154}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E07D1DF0-6F40-45E2-B4EB-10058A140154}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DFBFDFAC-EC80-40B9-B02F-EE65492E4304}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadowBox.Utilities", "ShadowBox.Utilities\ShadowBox.Utilities.csproj", "{730539B7-DBDE-4CBB-AE23-0ADA50FC463D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCoreAngularStarter.ManualDI", "DotnetCoreAngularStarter.ManualDI\DotnetCoreAngularStarter.ManualDI.csproj", "{2D95FD10-8926-4910-B07E-A7BA8A66A068}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCoreAngularStarter.DI", "DotnetCoreAngularStarter.DI\DotnetCoreAngularStarter.DI.csproj", "{2D95FD10-8926-4910-B07E-A7BA8A66A068}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShadowBox", "ShadowBox", "{9FEDC776-CA3F-4397-9884-0B89B533316C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{31133CFF-6752-42D3-B090-6FD2615A344D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayer", "DataAccessLayer", "{31133CFF-6752-42D3-B090-6FD2615A344D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -122,7 +122,6 @@ Global
 		{730539B7-DBDE-4CBB-AE23-0ADA50FC463D} = {9FEDC776-CA3F-4397-9884-0B89B533316C}
 		{2D95FD10-8926-4910-B07E-A7BA8A66A068} = {E07D1DF0-6F40-45E2-B4EB-10058A140154}
 		{9FEDC776-CA3F-4397-9884-0B89B533316C} = {E07D1DF0-6F40-45E2-B4EB-10058A140154}
-		{31133CFF-6752-42D3-B090-6FD2615A344D} = {E07D1DF0-6F40-45E2-B4EB-10058A140154}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CB905535-4947-4887-8DFF-3DCA5A537EE1}

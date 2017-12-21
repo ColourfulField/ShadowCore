@@ -25,7 +25,7 @@ namespace DotnetCoreAngularStarter.Models.EntityFramework
             optionsBuilder.UseSqlServer(_databaseOptions.SqlConnectionString);
         }
 
-        public void SeedDatabase()
+        public void EnsureDatabaseSeeded()
         {
             if (this.AllMigrationsApplied())
             {
@@ -39,9 +39,17 @@ namespace DotnetCoreAngularStarter.Models.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure Code First to ignore Pluralizing Table Name convention 
-            // If you keep this convention then the generated tables will have pluralized names. 
-            modelBuilder.RemovePluralizingTableNameConvention();
+            if (_databaseOptions.PluralizeColumnNames)
+            {
+                modelBuilder.UseTableNamePluralization();
+            }
+            if (_databaseOptions.LogTableGeneration.GenerateLogTables)
+            {
+                modelBuilder.GenerateLogTables();
+            }
+
+            modelBuilder.Entity<Note>()
+                        .Property(t => t.NoteId);
         }
     }
 

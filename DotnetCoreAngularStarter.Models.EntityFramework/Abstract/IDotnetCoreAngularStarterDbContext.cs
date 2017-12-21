@@ -25,7 +25,7 @@ namespace DotnetCoreAngularStarter.Models.EntityFramework.Abstract
     public interface IDotnetCoreAngularStarterDbContext : IScopedLifetime
     {
         DatabaseFacade Database { get; }
-        void SeedDatabase();
+        void EnsureDatabaseSeeded();
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         int SaveChanges();
         int SaveChanges(bool acceptAllChangesOnSuccess);

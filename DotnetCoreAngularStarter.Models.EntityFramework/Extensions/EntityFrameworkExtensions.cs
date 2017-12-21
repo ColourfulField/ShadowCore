@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DotnetCoreAngularStarter.Models.EntityFramework.Extensions
 {
-    public static class DbContextExtensions
+    public static class EntityFrameworkExtensions
     {
         public static bool AllMigrationsApplied(this DbContext context)
         {
@@ -40,11 +40,20 @@ namespace DotnetCoreAngularStarter.Models.EntityFramework.Extensions
             }
         }
 
-        public static void RemovePluralizingTableNameConvention(this ModelBuilder modelBuilder)
+        public static void UseTableNamePluralization(this ModelBuilder modelBuilder)
         {
             foreach (IMutableEntityType entity in modelBuilder.Model.GetEntityTypes())
             {
                 entity.Relational().TableName = entity.DisplayName();
+            }
+        }
+
+        public static void GenerateLogTables(this ModelBuilder modelBuilder)
+        {
+            foreach (IMutableEntityType entity in modelBuilder.Model.GetEntityTypes())
+            {
+                var logTableName = entity.DisplayName() + "Log";
+                //modelBuilder.Model.AddEntityType()
             }
         }
     }

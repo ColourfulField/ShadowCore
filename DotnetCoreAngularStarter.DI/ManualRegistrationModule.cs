@@ -2,7 +2,7 @@ using Autofac;
 using DotnetCoreAngularStarter.BusinessLogic.Services;
 using DotnetCoreAngularStarter.BusinessLogic.Services.Abstract;
 
-namespace DotnetCoreAngularStarter.ManualDI
+namespace DotnetCoreAngularStarter.DI
 {
     public class ManualRegistrationModule : Module
     {
