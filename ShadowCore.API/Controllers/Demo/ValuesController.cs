@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using ShadowTools.Mapper.Abstract;
 using ShadowTools.Mapper.Extensions;
 
-namespace ShadowCore.API.Controllers
+namespace ShadowCore.API.Controllers.Demo
 {
     /// <summary>
     /// Demo controller showcasing different features of the project

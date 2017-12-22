@@ -7,8 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
 using ShadowCore.API.Configuration;
+using ShadowCore.Common.Options;
 using ShadowCore.DI;
 using ShadowTools.AutomaticDI;
+using ShadowTools.Mapper.Options;
 
 namespace ShadowCore.API
 {
@@ -25,11 +27,15 @@ namespace ShadowCore.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<DatabaseOptions>(Configuration.GetSection("DatabaseOptions"));
+            services.Configure<AuthenticationOptions>(Configuration.GetSection("AuthenticationOptions"));
+            services.Configure<AutomapperOptions>(x => x.MaxDepth = 3);
+
             services.AddMvc();
+            services.AddIdentity();
             services.AddBearerTokenAuthentication();
             services.AddSwagger();
             services.ConfigureLocalization();
-            services.ConfigureAppOptions(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

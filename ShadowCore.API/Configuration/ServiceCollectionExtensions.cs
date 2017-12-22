@@ -2,16 +2,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ShadowCore.BusinessLogic.Services;
-using ShadowCore.Common.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Tokens;
-using ShadowTools.Mapper.Options;
 using ShadowTools.Utilities.Localization;
 using Swashbuckle.AspNetCore.Swagger;
 using ShadowCore.BusinessLogic.Services.Abstract;
@@ -23,19 +20,6 @@ namespace ShadowCore.API.Configuration
     /// </summary>
     public static class ServiceCollectionExtensions
     {
-        /// <summary>
-        /// Register all option objects as IOptions<T>
-        /// </summary>
-        /// <param name="services">Service collection object to configure</param>
-        /// <param name="configuration">Configuration object which contains serialized options</param>
-        public static void ConfigureAppOptions(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.Configure<DatabaseOptions>(configuration.GetSection("DatabaseOptions"));
-
-            // Setups max depth for automatic mapping using ShadowTools.Mapper
-            services.Configure<AutomapperOptions>(x => x.MaxDepth = 3);
-        }
-
         /// <summary>
         /// Configures localizer factory options and adds factory it as a singleton to service collection
         /// </summary>

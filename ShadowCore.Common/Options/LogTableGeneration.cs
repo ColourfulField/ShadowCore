@@ -1,3 +1,0 @@
-namespace ShadowCore.Common.Options
-{
-}

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ShadowCore.DAL.EntityFramework.Abstract;
 using ShadowCore.Common;
+using ShadowCore.Models.EntityFramework.Domain;
 using ShadowTools.AutomaticDI;
 
 namespace ShadowCore.DAL.EntityFramework.Repository

@@ -15,9 +15,9 @@ namespace ShadowCore.Models.EntityFramework
         #region Constructor, configuration and seeding
 
         private readonly DatabaseOptions _databaseOptions;
-        public ShadowCoreDbContext(IOptions<DatabaseOptions>  databaseOptions)
+        public ShadowCoreDbContext(IOptions<DatabaseOptions>  databaseOptionsAccessor)
         {
-            _databaseOptions = databaseOptions.Value;
+            _databaseOptions = databaseOptionsAccessor.Value;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -68,11 +68,11 @@ namespace ShadowCore.Models.EntityFramework
                 .Build();
 
             var connectionString = configuration.GetSection("DatabaseOptions:SqlConnectionString").Value;
-            IOptions<DatabaseOptions> dbOptions = new OptionsWrapper<DatabaseOptions>(new DatabaseOptions { SqlConnectionString = connectionString });
+            IOptions<DatabaseOptions> databaseOptionsAccessor = new OptionsWrapper<DatabaseOptions>(new DatabaseOptions { SqlConnectionString = connectionString });
 
             var builder = new DbContextOptionsBuilder<ShadowCoreDbContext>();
             builder.UseSqlServer(connectionString);
-            return new ShadowCoreDbContext(dbOptions);
+            return new ShadowCoreDbContext(databaseOptionsAccessor);
         }
     }
 }

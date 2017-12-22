@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace ShadowCore.API.Controllers.Abstract
+namespace ShadowCore.API.Controllers.Demo.Abstract
 {
     /// <summary>
     /// Base class for API controllers. Used only for API versioning demo, feel free to remove it.
