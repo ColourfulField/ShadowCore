@@ -2,7 +2,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ShadowCore.DAL.EntityFramework.Abstract.Identity;
+using ShadowCore.DAL.EntityFramework.Identity;
 using ShadowCore.Models.EntityFramework;
+using ShadowCore.Models.EntityFramework.Domain;
+using UserStore = Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore;
 
 namespace ShadowCore.DI
 {
@@ -13,13 +17,14 @@ namespace ShadowCore.DI
             services.AddIdentity<User, Role>()
                     .AddEntityFrameworkStores<ShadowCoreDbContext>()
                     .AddDefaultTokenProviders()
-                    .AddTokenProvider<DataProtectorTokenProvider<User>>("Default")
-                    .AddUserManager<CustomUserManager>()
-                    .AddRoleManager<CustomRoleManager>()
-                    .AddUserStore<CustomUserStore>()
-                    .AddUserValidator<CustomUserValidator>()
-                    .AddRoleStore<RoleStore<Role, ShadowCoreDbContext, Guid>>()
-                    .AddSignInManager<CustomSignInManager>();
+                    .AddTokenProvider<DataProtectorTokenProvider<User>>("Default");
+                   
+            services.AddScoped<IUserManager, ApplicationUserManager>();
+            services.AddScoped<IRoleManager, ApplicationRoleManager>();
+            services.AddScoped<IUserStore, ApplicationUserStore>();
+            services.AddScoped<IUserValidator, ApplicationUserValidator>();
+            services.AddScoped<IRoleStore, ApplicationRoleStore>();
+            services.AddScoped<ISignInManager, ApplicationSignInManager>();
         }
     }
 }

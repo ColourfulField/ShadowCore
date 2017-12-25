@@ -5,11 +5,11 @@ using ShadowCore.Models.DTO;
 
 namespace ShadowCore.Mappers.BL_DL
 {
-    public class NoteMappingDTOtoVM : AsyncMapping<NoteDTO, Note>
+    public class NoteDTO_NoteVM : AsyncMapping<NoteDTO, Note>
     {
         private readonly IAutoMapService _autoMapService;
 
-        public NoteMappingDTOtoVM(IAutoMapService autoMapService)
+        public NoteDTO_NoteVM(IAutoMapService autoMapService)
         {
             _autoMapService = autoMapService;
         }
@@ -20,11 +20,11 @@ namespace ShadowCore.Mappers.BL_DL
         }
     }
 
-    public class NoteMappingVMtoDTO : AsyncMapping<Note, NoteDTO>
+    public class NoteVM_NoteDTO : AsyncMapping<Note, NoteDTO>
     {
         private readonly IAutoMapService _autoMapService;
 
-        public NoteMappingVMtoDTO(IAutoMapService autoMapService)
+        public NoteVM_NoteDTO(IAutoMapService autoMapService)
         {
             _autoMapService = autoMapService;
         }

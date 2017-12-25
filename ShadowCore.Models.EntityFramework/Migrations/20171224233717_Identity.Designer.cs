@@ -11,9 +11,10 @@ using System;
 namespace ShadowCore.Models.EntityFramework.Migrations
 {
     [DbContext(typeof(ShadowCoreDbContext))]
-    partial class ShadowCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171224233717_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

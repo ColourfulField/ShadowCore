@@ -27,7 +27,7 @@ namespace ShadowCore.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<DatabaseOptions>(Configuration.GetSection("DatabaseOptions"));
+            services.Configure<SqlOptions>(Configuration.GetSection("DatabaseOptions:SqlOptions"));
             services.Configure<AuthenticationOptions>(Configuration.GetSection("AuthenticationOptions"));
             services.Configure<AutomapperOptions>(x => x.MaxDepth = 3);
 
@@ -60,8 +60,6 @@ namespace ShadowCore.API
             var assemblyNames = Configuration.GetSection("AssemblyNamesForDIAutoRegistration").Get<string[]>();
             var runtimeLibraries = DependencyContext.Default.RuntimeLibraries.Where(a => assemblyNames.Any(x => a.Name.Contains(x)));
             builder.RegisterModule(new AutoRegistrationModule(runtimeLibraries));
-
-            builder.RegisterModule(new ManualRegistrationModule());
         }
     }
 }

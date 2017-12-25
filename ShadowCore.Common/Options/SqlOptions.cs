@@ -1,6 +1,6 @@
 namespace ShadowCore.Common.Options
 {
-    public class DatabaseOptions
+    public class SqlOptions
     {
         public string SqlConnectionString { get; set; }
         public bool PluralizeColumnNames { get; set; }

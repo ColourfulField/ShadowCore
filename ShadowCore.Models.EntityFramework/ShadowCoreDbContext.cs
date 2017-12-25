@@ -14,15 +14,15 @@ namespace ShadowCore.Models.EntityFramework
     {
         #region Constructor, configuration and seeding
 
-        private readonly DatabaseOptions _databaseOptions;
-        public ShadowCoreDbContext(IOptions<DatabaseOptions>  databaseOptionsAccessor)
+        private readonly SqlOptions _sqlOptions;
+        public ShadowCoreDbContext(IOptions<SqlOptions>  databaseOptionsAccessor)
         {
-            _databaseOptions = databaseOptionsAccessor.Value;
+            _sqlOptions = databaseOptionsAccessor.Value;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_databaseOptions.SqlConnectionString);
+            optionsBuilder.UseSqlServer(_sqlOptions.SqlConnectionString);
         }
 
         public void EnsureDatabaseSeeded()
@@ -36,14 +36,16 @@ namespace ShadowCore.Models.EntityFramework
         #endregion
 
         public DbSet<Note> Notes { get; set; }
-
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            if (_databaseOptions.PluralizeColumnNames)
+            if (_sqlOptions.PluralizeColumnNames)
             {
                 modelBuilder.UseTableNamePluralization();
             }
-            if (_databaseOptions.LogTableGeneration.GenerateLogTables)
+            if (_sqlOptions.LogTableGeneration.GenerateLogTables)
             {
                 modelBuilder.GenerateLogTables();
             }
@@ -67,11 +69,11 @@ namespace ShadowCore.Models.EntityFramework
                 .AddJsonFile($"appsettings.{envName}.json", true)
                 .Build();
 
-            var connectionString = configuration.GetSection("DatabaseOptions:SqlConnectionString").Value;
-            IOptions<DatabaseOptions> databaseOptionsAccessor = new OptionsWrapper<DatabaseOptions>(new DatabaseOptions { SqlConnectionString = connectionString });
+            var sqlOptions = configuration.GetSection("DatabaseOptions:SqlOptions").Get<SqlOptions>();
+            IOptions<SqlOptions> databaseOptionsAccessor = new OptionsWrapper<SqlOptions>(sqlOptions);
 
             var builder = new DbContextOptionsBuilder<ShadowCoreDbContext>();
-            builder.UseSqlServer(connectionString);
+            builder.UseSqlServer(sqlOptions.SqlConnectionString);
             return new ShadowCoreDbContext(databaseOptionsAccessor);
         }
     }
