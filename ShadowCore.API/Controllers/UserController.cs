@@ -8,6 +8,7 @@ using ShadowCore.BusinessLogic.Services;
 using ShadowCore.BusinessLogic.Services.Abstract;
 using ShadowCore.Models.DTO;
 using ShadowCore.Models.VM;
+using ShadowCore.Models.VM.User;
 using ShadowTools.Mapper.Abstract;
 
 namespace ShadowCore.API.Controllers

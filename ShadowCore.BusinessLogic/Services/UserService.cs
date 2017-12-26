@@ -27,5 +27,11 @@ namespace ShadowCore.BusinessLogic.Services
 
             return user.Id;
         }
+
+        public async Task<bool> CheckPassword(UserDTO userDto)
+        {
+            var user = await _userManager.FindByEmailAsync(userDto.Email);
+            return await _userManager.CheckPasswordAsync(user, userDto.Password);
+        }
     }
 }

@@ -14,6 +14,7 @@
     <ProjectReference Include="..\ShadowCore.Common\ShadowCore.Common.csproj" />
     <ProjectReference Include="..\ShadowCore.Models.EntityFramework\ShadowCore.Models.EntityFramework.csproj" />
     <ProjectReference Include="..\ShadowTools.AutomaticDI\ShadowTools.AutomaticDI.csproj" />
+    <ProjectReference Include="..\ShadowTools.Utilities\ShadowTools.Utilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

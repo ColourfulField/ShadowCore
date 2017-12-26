@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Tokens;
 using ShadowTools.Utilities.Localization;
@@ -18,7 +20,7 @@ namespace ShadowCore.API.Configuration
     /// <summary>
     /// Contains shorthand methods for service configuration in Startup
     /// </summary>
-    public static class ServiceCollectionExtensions
+    public static class ConfigureServices
     {
         /// <summary>
         /// Configures localizer factory options and adds factory it as a singleton to service collection
@@ -78,27 +80,54 @@ namespace ShadowCore.API.Configuration
         {
             // We need to register and resolve this service here, because at this point
             // we don't have access to Autofac registrations
-            services.AddSingleton<IBearerTokenService, BearerTokenService>();
-            var serviceProvider = services.BuildServiceProvider();
-            var tokenService = serviceProvider.GetService<IBearerTokenService>();
+            // services.AddSingleton<IBearerTokenService, BearerTokenService>();
+            // var serviceProvider = services.BuildServiceProvider().GetService<IBearerTokenService>();
+            //  var tokenService = serviceProvider.GetService<IBearerTokenService>();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            services.AddSingleton<IConfigureOptions<JwtBearerOptions>, ConfigureJwtBearerOptions>();
+
+            services.AddAuthentication(options =>
                     {
-                        options.TokenValidationParameters =
-                            new TokenValidationParameters
-                            {
-                                ValidateIssuer = false,
-                                ValidateAudience = false,
-                                ValidateLifetime = false,
-                                ValidateIssuerSigningKey = true,
-
-                                ValidIssuer = "Fiver.Security.Bearer",
-                                ValidAudience = "Fiver.Security.Bearer",
-                                IssuerSigningKey = tokenService.GenerateSingingKey()
-                            };
-                    });
+                        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    })
+                    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, configureOptions: null);
         }
     }
+
+    public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions>
+    {
+        private readonly IBearerTokenService _tokenService;
+        public ConfigureJwtBearerOptions(IBearerTokenService tokenService)
+        {
+            _tokenService = tokenService;
+        }
+
+        public void Configure(string name, JwtBearerOptions options)
+        {
+            if (name == JwtBearerDefaults.AuthenticationScheme)
+            {
+                options.TokenValidationParameters =
+                    new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateLifetime = false,
+                        ValidateIssuerSigningKey = true,
+
+                        ValidIssuer = "Fiver.Security.Bearer",
+                        ValidAudience = "Fiver.Security.Bearer",
+                        IssuerSigningKey = _tokenService.GenerateSingingKey()
+                    };
+            }
+        }
+
+        public void Configure(JwtBearerOptions options)
+        {
+            // default case: no scheme name was specified
+            Configure(string.Empty, options);
+        }
+    }
+
 }
-    

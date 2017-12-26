@@ -38,7 +38,8 @@ namespace ShadowCore.Models.EntityFramework
         public DbSet<Note> Notes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
-       
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             if (_sqlOptions.PluralizeColumnNames)
@@ -51,7 +52,12 @@ namespace ShadowCore.Models.EntityFramework
             }
 
             modelBuilder.Entity<Note>()
-                        .Property(t => t.NoteId);
+                        .HasOne(x => x.ParentNote)
+                        .WithMany(x => x.ChildNotes)
+                        .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<RefreshToken>()
+                        .HasOne(x => x.User);
         }
     }
 

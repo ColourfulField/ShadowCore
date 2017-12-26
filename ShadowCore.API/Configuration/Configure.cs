@@ -9,7 +9,7 @@ namespace ShadowCore.API.Configuration
     /// <summary>
     /// Contains shorthand methods for HTTP request pipeline configuration in Startup
     /// </summary>
-    public static class ApplicationBuilderExtensions
+    public static class Configure
     {
         /// <summary>
         /// Configures localization middleware. Contains the list of supported cultures

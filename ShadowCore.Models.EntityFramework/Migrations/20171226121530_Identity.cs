@@ -9,10 +9,9 @@ namespace ShadowCore.Models.EntityFramework.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<Guid>(
-                name: "NoteId",
+                name: "ParentNoteId",
                 table: "Notes",
-                nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "Roles",
@@ -54,23 +53,23 @@ namespace ShadowCore.Models.EntityFramework.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notes_NoteId",
+                name: "IX_Notes_ParentNoteId",
                 table: "Notes",
-                column: "NoteId");
+                column: "ParentNoteId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Notes_Notes_NoteId",
+                name: "FK_Notes_Notes_ParentNoteId",
                 table: "Notes",
-                column: "NoteId",
+                column: "ParentNoteId",
                 principalTable: "Notes",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Notes_Notes_NoteId",
+                name: "FK_Notes_Notes_ParentNoteId",
                 table: "Notes");
 
             migrationBuilder.DropTable(
@@ -80,11 +79,11 @@ namespace ShadowCore.Models.EntityFramework.Migrations
                 name: "Users");
 
             migrationBuilder.DropIndex(
-                name: "IX_Notes_NoteId",
+                name: "IX_Notes_ParentNoteId",
                 table: "Notes");
 
             migrationBuilder.DropColumn(
-                name: "NoteId",
+                name: "ParentNoteId",
                 table: "Notes");
         }
     }

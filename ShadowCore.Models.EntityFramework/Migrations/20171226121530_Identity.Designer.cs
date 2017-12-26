@@ -11,9 +11,10 @@ using System;
 namespace ShadowCore.Models.EntityFramework.Migrations
 {
     [DbContext(typeof(ShadowCoreDbContext))]
-    partial class ShadowCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171226121530_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,26 +41,6 @@ namespace ShadowCore.Models.EntityFramework.Migrations
                     b.HasIndex("ParentNoteId");
 
                     b.ToTable("Notes");
-                });
-
-            modelBuilder.Entity("ShadowCore.Models.EntityFramework.Domain.RefreshToken", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ClientApp");
-
-                    b.Property<Guid>("UserId");
-
-                    b.Property<DateTime>("ValidFrom");
-
-                    b.Property<DateTime>("ValidTo");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("ShadowCore.Models.EntityFramework.Domain.Role", b =>
@@ -122,14 +103,6 @@ namespace ShadowCore.Models.EntityFramework.Migrations
                         .WithMany("ChildNotes")
                         .HasForeignKey("ParentNoteId")
                         .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("ShadowCore.Models.EntityFramework.Domain.RefreshToken", b =>
-                {
-                    b.HasOne("ShadowCore.Models.EntityFramework.Domain.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

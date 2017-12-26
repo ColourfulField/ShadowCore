@@ -11,8 +11,8 @@ using System;
 namespace ShadowCore.Models.EntityFramework.Migrations
 {
     [DbContext(typeof(ShadowCoreDbContext))]
-    [Migration("20171224233717_Identity")]
-    partial class Identity
+    [Migration("20171226191324_RefreshToken")]
+    partial class RefreshToken
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,17 +30,37 @@ namespace ShadowCore.Models.EntityFramework.Migrations
 
                     b.Property<DateTime>("ModificationDate");
 
-                    b.Property<Guid>("NoteId");
-
                     b.Property<int>("Number");
+
+                    b.Property<Guid?>("ParentNoteId");
 
                     b.Property<string>("Text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NoteId");
+                    b.HasIndex("ParentNoteId");
 
                     b.ToTable("Notes");
+                });
+
+            modelBuilder.Entity("ShadowCore.Models.EntityFramework.Domain.RefreshToken", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ClientApp");
+
+                    b.Property<Guid>("UserId");
+
+                    b.Property<DateTime>("ValidFrom");
+
+                    b.Property<DateTime>("ValidTo");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("ShadowCore.Models.EntityFramework.Domain.Role", b =>
@@ -100,8 +120,16 @@ namespace ShadowCore.Models.EntityFramework.Migrations
             modelBuilder.Entity("ShadowCore.Models.EntityFramework.Domain.Note", b =>
                 {
                     b.HasOne("ShadowCore.Models.EntityFramework.Domain.Note", "ParentNote")
+                        .WithMany("ChildNotes")
+                        .HasForeignKey("ParentNoteId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ShadowCore.Models.EntityFramework.Domain.RefreshToken", b =>
+                {
+                    b.HasOne("ShadowCore.Models.EntityFramework.Domain.User", "User")
                         .WithMany()
-                        .HasForeignKey("NoteId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
