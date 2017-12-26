@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+﻿using System.Threading.Tasks;
 using ShadowCore.Models.EntityFramework.Domain;
 using ShadowTools.AutomaticDI.Interfaces;
 

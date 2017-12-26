@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace ShadowCore.Models.VM.User
+﻿namespace ShadowCore.Models.VM.User
 {
     public class CreateUserVM
     {

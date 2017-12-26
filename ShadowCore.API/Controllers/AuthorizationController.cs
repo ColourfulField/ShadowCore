@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using ShadowCore.API.Controllers.Abstract;
 using ShadowCore.BusinessLogic.Services.Abstract;
@@ -7,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using ShadowCore.Common.Models.Authentication;
 using ShadowCore.Models.DTO;
 using ShadowCore.Models.VM.User;
-using ShadowTools.Mapper;
 using ShadowTools.Mapper.Abstract;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

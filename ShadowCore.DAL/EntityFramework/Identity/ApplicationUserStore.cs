@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using ShadowCore.DAL.EntityFramework.Abstract.Identity;
 using ShadowCore.Models.EntityFramework;

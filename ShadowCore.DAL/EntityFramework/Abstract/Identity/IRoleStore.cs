@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ShadowTools.AutomaticDI.Interfaces;
+﻿using ShadowTools.AutomaticDI.Interfaces;
 
 namespace ShadowCore.DAL.EntityFramework.Abstract.Identity
 {

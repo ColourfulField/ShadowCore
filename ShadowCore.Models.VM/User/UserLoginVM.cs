@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ShadowCore.Models.VM.User
+﻿namespace ShadowCore.Models.VM.User
 {
     public class UserLoginVM
     {

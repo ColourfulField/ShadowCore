@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ShadowTools.Utilities.Exceptions
+﻿namespace ShadowTools.Utilities.Exceptions
 {
     public class TokenValidationException: ValidationException
     {

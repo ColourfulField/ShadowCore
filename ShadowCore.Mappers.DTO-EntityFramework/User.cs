@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ShadowCore.Models.DTO;
 using ShadowCore.Models.EntityFramework.Domain;
 using ShadowTools.Mapper.Abstract;
