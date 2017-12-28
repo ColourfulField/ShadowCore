@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ShadowTools.Mapper.Abstract;
@@ -8,7 +9,7 @@ namespace ShadowCore.API.Controllers.Abstract
     /// Base class for API controllers. Contains API and default Route attributes along with [Authorize] attribute.
     /// Also contains common Controller functionality
     /// </summary>
-    //[Authorize]
+    [Authorize]
     [ApiVersion("1")]
     [Route("api/v1/[controller]")]
     public abstract class BaseController : Controller
