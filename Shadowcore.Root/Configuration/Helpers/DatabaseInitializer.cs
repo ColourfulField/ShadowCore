@@ -3,7 +3,7 @@ using ShadowCore.BusinessLogic.Services.Abstract;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace ShadowCore.API.Configuration.Helpers
+namespace Shadowcore.Root.Configuration.Helpers
 {
     /// <summary>
     /// Contains methods for database seeding

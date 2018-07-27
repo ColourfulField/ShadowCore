@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.0\ShadowCore.API.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.0\Shadowcore.Root.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,13 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.6.2" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="2.0.0" />
-    <PackageReference Include="Serilog" Version="2.6.0" />
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="2.3.0" />
+    <PackageReference Include="Serilog" Version="2.7.1" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,11 +29,13 @@
   <ItemGroup>
     <ProjectReference Include="..\ShadowCore.BusinessLogic\ShadowCore.BusinessLogic.csproj" />
     <ProjectReference Include="..\ShadowCore.Common\ShadowCore.Common.csproj" />
+    <ProjectReference Include="..\ShadowCore.DAL\ShadowCore.DAL.csproj" />
     <ProjectReference Include="..\ShadowCore.DI\ShadowCore.DI.csproj" />
     <ProjectReference Include="..\ShadowCore.Mappers.VM-DTO\ShadowCore.Mappers.VM-DTO.csproj" />
+    <ProjectReference Include="..\ShadowCore.Models.EntityFramework\ShadowCore.Models.EntityFramework.csproj" />
     <ProjectReference Include="..\ShadowCore.Models.VM\ShadowCore.Models.VM.csproj" />
     <ProjectReference Include="..\ShadowCore.Models.DTO\ShadowCore.Models.DTO.csproj" />
-    <ProjectReference Include="..\ShadowTools.AutomaticDI\ShadowTools.AutomaticDI.csproj" />
+    <ProjectReference Include="..\ShadowCore.Presentation\ShadowCore.Presentation.csproj" />
     <ProjectReference Include="..\ShadowTools.Mapper\ShadowTools.Mapper.csproj" />
     <ProjectReference Include="..\ShadowTools.Utilities\ShadowTools.Utilities.csproj" />
   </ItemGroup>

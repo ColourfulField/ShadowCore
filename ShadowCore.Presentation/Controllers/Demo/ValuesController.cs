@@ -1,26 +1,28 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ShadowCore.API.Controllers.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-using ShadowCore.BusinessLogic.Services.Abstract;
-using ShadowCore.Models.VM;
-using ShadowCore.Models.DTO;
 using Microsoft.Extensions.Logging;
+using ShadowCore.BusinessLogic.Services.Abstract;
+using ShadowCore.Models.DTO;
+using ShadowCore.Models.VM;
+using ShadowCore.Presentation.Controllers.Abstract;
 using ShadowTools.Mapper.Abstract;
 using ShadowTools.Mapper.Extensions;
 
-namespace ShadowCore.API.Controllers.Demo
+namespace ShadowCore.Presentation.Controllers.Demo
 {
     /// <summary>
-    /// Demo controller showcasing different features of the project
+    ///     Demo controller showcasing different features of the project
     /// </summary>
+    [AllowAnonymous]
     public class ValuesController : BaseController
     {
-        private readonly INoteService _noteService;
-        private readonly IManuallyRegisteredService _manuallyRegisteredService;
         private readonly IStringLocalizer<ValuesController> _localizer;
+        private readonly IManuallyRegisteredService _manuallyRegisteredService;
+        private readonly INoteService _noteService;
 
         public ValuesController(
             IMapper mapper,
@@ -28,7 +30,7 @@ namespace ShadowCore.API.Controllers.Demo
             INoteService noteService,
             IManuallyRegisteredService manuallyRegisteredService,
             IStringLocalizer<ValuesController> localizer
-        ) :base(logger, mapper)
+        ) : base(logger, mapper)
         {
             _noteService = noteService;
             _manuallyRegisteredService = manuallyRegisteredService;
@@ -61,6 +63,12 @@ namespace ShadowCore.API.Controllers.Demo
         // GET api/values/5
         [HttpGet("{text}")]
         public async Task<string> GetLocalizerHello(string text)
+        {
+            return _localizer["Hello"];
+        }
+
+        [HttpPost]
+        public async Task<string> PostWithGuids([FromQuery] Guid[] guids)
         {
             return _localizer["Hello"];
         }

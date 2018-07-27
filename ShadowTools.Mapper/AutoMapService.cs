@@ -13,9 +13,9 @@ namespace ShadowTools.Mapper
 {
     public class AutoMapService : IAutoMapService
     {
-        private readonly Func<IMapper> _mapper; // Prevents Circular dependency
+        private readonly IMapper _mapper; // Prevents Circular dependency
 
-        public AutoMapService(Func<IMapper> mapper, IOptions<AutomapperOptions> automapperOptions)
+        public AutoMapService(IMapper mapper, IOptions<AutomapperOptions> automapperOptions)
         {
             _mapper = mapper;
             _defaultMaxDepth = automapperOptions?.Value.MaxDepth ?? 0;
@@ -96,7 +96,7 @@ namespace ShadowTools.Mapper
             if (!sourcePropertyType.IsSimple() && !destinationPropertyType.IsSimple() && sourceProperty.GetValue(source) != null)
             {
 
-                var mapper = _mapper();
+                var mapper = _mapper;
                 var mapMethod = mapper.GetType().GetMethod("Map");
                 var genericMethod = mapMethod.MakeGenericMethod(sourcePropertyType, destinationPropertyType);
                 var sourceObject = Convert.ChangeType(sourceProperty.GetValue(source), sourcePropertyType);

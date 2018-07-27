@@ -18,5 +18,10 @@ namespace ShadowTools.Utilities.Extensions.Reflection
                    || type == typeof(Guid)
                    || type == typeof(DateTime);
         }
+
+        public static bool IsAssignableTo<T>(this Type type) where T: class
+        {
+            return typeof(T).IsAssignableFrom(type);
+        }
     }
 }

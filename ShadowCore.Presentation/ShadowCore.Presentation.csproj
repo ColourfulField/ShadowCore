@@ -5,16 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="2.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ShadowCore.BusinessLogic\ShadowCore.BusinessLogic.csproj" />
-    <ProjectReference Include="..\ShadowCore.Common\ShadowCore.Common.csproj" />
+    <ProjectReference Include="..\ShadowCore.Mappers.VM-DTO\ShadowCore.Mappers.VM-DTO.csproj" />
     <ProjectReference Include="..\ShadowCore.Models.DTO\ShadowCore.Models.DTO.csproj" />
-    <ProjectReference Include="..\ShadowCore.Models.EntityFramework\ShadowCore.Models.EntityFramework.csproj" />
     <ProjectReference Include="..\ShadowCore.Models.VM\ShadowCore.Models.VM.csproj" />
   </ItemGroup>
 

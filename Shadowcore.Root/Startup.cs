@@ -1,18 +1,19 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Autofac;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
-using ShadowCore.API.Configuration;
+using Shadowcore.Root.Configuration;
 using ShadowCore.Common.Options;
 using ShadowCore.DI;
+using ShadowCore.Presentation.Controllers.Demo;
 using ShadowTools.AutomaticDI;
 using ShadowTools.Mapper.Options;
 
-namespace ShadowCore.API
+namespace Shadowcore.Root
 {
     [SuppressMessage("", "CS1591:MissingXmlDocumentation")]
     public class Startup
@@ -31,8 +32,12 @@ namespace ShadowCore.API
             services.Configure<AuthenticationOptions>(Configuration.GetSection("AuthenticationOptions"));
             services.Configure<AutomapperOptions>(x => x.MaxDepth = 3);
 
-            services.AddMvc();
+            var assemblyNames = Configuration.GetSection("AssemblyNamesForDIAutoRegistration").Get<string[]>();
+            var runtimeLibraries = DependencyContext.Default.RuntimeLibraries.Where(a => assemblyNames.Any(x => a.Name.Contains(x)));
+
+            services.AddShadowToolsAutomaticDi(runtimeLibraries);
             services.AddIdentity();
+            services.AddMvc().AddApplicationPart(typeof(ValuesController).GetTypeInfo().Assembly).AddControllersAsServices();;
             services.AddBearerTokenAuthentication();
             services.AddSwagger();
             services.ConfigureLocalization();
@@ -55,11 +60,11 @@ namespace ShadowCore.API
             app.UseMvc();
         }
 
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            var assemblyNames = Configuration.GetSection("AssemblyNamesForDIAutoRegistration").Get<string[]>();
-            var runtimeLibraries = DependencyContext.Default.RuntimeLibraries.Where(a => assemblyNames.Any(x => a.Name.Contains(x)));
-            builder.RegisterModule(new AutoRegistrationModule(runtimeLibraries));
-        }
+        //public void ConfigureContainer(ContainerBuilder builder)
+        //{
+        //    var assemblyNames = Configuration.GetSection("AssemblyNamesForDIAutoRegistration").Get<string[]>();
+        //    var runtimeLibraries = DependencyContext.Default.RuntimeLibraries.Where(a => assemblyNames.Any(x => a.Name.Contains(x)));
+        //    builder.RegisterModule(new AutoRegistrationModule(runtimeLibraries));
+        //}
     }
 }

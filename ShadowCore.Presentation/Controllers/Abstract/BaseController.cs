@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ShadowTools.Mapper.Abstract;
 
-namespace ShadowCore.API.Controllers.Abstract
+namespace ShadowCore.Presentation.Controllers.Abstract
 {
     /// <summary>
     /// Base class for API controllers. Contains API and default Route attributes along with [Authorize] attribute.

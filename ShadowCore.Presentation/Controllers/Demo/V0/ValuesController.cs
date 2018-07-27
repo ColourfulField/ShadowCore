@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ShadowCore.API.Controllers.Demo.Abstract;
+using ShadowCore.Presentation.Controllers.Demo.Abstract;
 
-namespace ShadowCore.API.Controllers.Demo.V0
+namespace ShadowCore.Presentation.Controllers.Demo.V0
 {
     /// <summary>
     /// controller for old API version. Used only for API versioning demo, feel free to remove it.

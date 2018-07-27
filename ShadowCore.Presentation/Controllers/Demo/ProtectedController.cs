@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using ShadowCore.API.Controllers.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ShadowCore.Presentation.Controllers.Abstract;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace ShadowCore.API.Controllers.Demo
+namespace ShadowCore.Presentation.Controllers.Demo
 {
     [Authorize]
     public class ProtectedController : BaseController

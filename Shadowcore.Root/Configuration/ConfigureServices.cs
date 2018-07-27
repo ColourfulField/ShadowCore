@@ -16,7 +16,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using ShadowCore.BusinessLogic.Services.Abstract;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace ShadowCore.API.Configuration
+namespace Shadowcore.Root.Configuration
 {
     /// <summary>
     /// Contains shorthand methods for service configuration in Startup
@@ -38,7 +38,7 @@ namespace ShadowCore.API.Configuration
                                                 "Localization"
                                             },
                                             {
-                                                "ShadowCore.API",
+                                                "Shadowcore.Root",
                                                 "Localization"
                                             }
                                         };
@@ -54,7 +54,7 @@ namespace ShadowCore.API.Configuration
         /// <param name="services"></param>
         public static void AddSwagger(this IServiceCollection services)
         {
-            var xmlCommentsFilePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "ShadowCore.API.xml");
+            var xmlCommentsFilePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "Shadowcore.Root.xml");
 
             services.AddSwaggerGen(x =>
             {
@@ -79,7 +79,7 @@ namespace ShadowCore.API.Configuration
                                                   }
                 );
 
-                x.OperationFilter<SecurityRequirementsOperationFilter>();
+                //x.OperationFilter<SecurityRequirementsOperationFilter>();
             });
         }
 
@@ -95,15 +95,30 @@ namespace ShadowCore.API.Configuration
             // var serviceProvider = services.BuildServiceProvider().GetService<IBearerTokenService>();
             //  var tokenService = serviceProvider.GetService<IBearerTokenService>();
 
-            services.AddSingleton<IConfigureOptions<JwtBearerOptions>, ConfigureJwtBearerOptions>();
-
+            //services.AddSingleton<IConfigureOptions<JwtBearerOptions>, ConfigureJwtBearerOptions>();
+            var serviceProvider = services.BuildServiceProvider();
+            var tokenService = serviceProvider.GetService<IBearerTokenService>();
             services.AddAuthentication(options =>
                     {
                         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                         options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                     })
-                    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, configureOptions: null);
+                    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, cfg =>
+                    {
+                        cfg.TokenValidationParameters = new TokenValidationParameters
+                                                        {
+                                                            ValidateIssuer = false,
+                                                            ValidateAudience = false,
+                                                            ValidateLifetime = false,
+                                                            ValidateIssuerSigningKey = true,
+
+                                                            ValidIssuer = "Fiver.Security.Bearer",
+                                                            ValidAudience = "Fiver.Security.Bearer",
+                                                            IssuerSigningKey = tokenService.GenerateSingingKey()
+                                                        };
+
+                    });
         }
     }
 
@@ -117,21 +132,7 @@ namespace ShadowCore.API.Configuration
 
         public void Configure(string name, JwtBearerOptions options)
         {
-            if (name == JwtBearerDefaults.AuthenticationScheme)
-            {
-                options.TokenValidationParameters =
-                    new TokenValidationParameters
-                    {
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
-                        ValidateLifetime = false,
-                        ValidateIssuerSigningKey = true,
 
-                        ValidIssuer = "Fiver.Security.Bearer",
-                        ValidAudience = "Fiver.Security.Bearer",
-                        IssuerSigningKey = _tokenService.GenerateSingingKey()
-                    };
-            }
         }
 
         public void Configure(JwtBearerOptions options)
@@ -141,43 +142,43 @@ namespace ShadowCore.API.Configuration
         }
     }
 
-    public class SecurityRequirementsOperationFilter : IOperationFilter
-    {
-        private readonly IOptions<AuthorizationOptions> authorizationOptions;
+    //public class SecurityRequirementsOperationFilter : IOperationFilter
+    //{
+    //    private readonly IOptions<AuthorizationOptions> authorizationOptions;
 
-        public SecurityRequirementsOperationFilter(IOptions<AuthorizationOptions> authorizationOptions)
-        {
-            this.authorizationOptions = authorizationOptions;
-        }
+    //    public SecurityRequirementsOperationFilter(IOptions<AuthorizationOptions> authorizationOptions)
+    //    {
+    //        this.authorizationOptions = authorizationOptions;
+    //    }
 
-        public void Apply(Operation operation, OperationFilterContext context)
-        {
-            var controllerPolicies = context.ApiDescription.ControllerAttributes()
-                                            .OfType<AuthorizeAttribute>()
-                                            .Select(attr => attr.Policy);
-            var actionPolicies = context.ApiDescription.ActionAttributes()
-                                        .OfType<AuthorizeAttribute>()
-                                        .Select(attr => attr.Policy);
-            var policies = controllerPolicies.Union(actionPolicies).Distinct();
-            var requiredClaimTypes = policies
-                .Select(x => this.authorizationOptions.Value.GetPolicy(x))
-                .SelectMany(x => x.Requirements)
-                .OfType<ClaimsAuthorizationRequirement>()
-                .Select(x => x.ClaimType);
+    //    public void Apply(Operation operation, OperationFilterContext context)
+    //    {
+    //        var controllerPolicies = context.ApiDescription.ControllerAttributes()
+    //                                        .OfType<AuthorizeAttribute>()
+    //                                        .Select(attr => attr.Policy);
+    //        var actionPolicies = context.ApiDescription.ActionAttributes()
+    //                                    .OfType<AuthorizeAttribute>()
+    //                                    .Select(attr => attr.Policy);
+    //        var policies = controllerPolicies.Union(actionPolicies).Distinct();
+    //        var requiredClaimTypes = policies
+    //            .Select(x => this.authorizationOptions.Value.GetPolicy(x))
+    //            .SelectMany(x => x.Requirements)
+    //            .OfType<ClaimsAuthorizationRequirement>()
+    //            .Select(x => x.ClaimType);
 
-            if (requiredClaimTypes.Any())
-            {
-                operation.Responses.Add("401", new Response { Description = "Unauthorized" });
-                operation.Responses.Add("403", new Response { Description = "Forbidden" });
+    //        if (requiredClaimTypes.Any())
+    //        {
+    //            operation.Responses.Add("401", new Response { Description = "Unauthorized" });
+    //            operation.Responses.Add("403", new Response { Description = "Forbidden" });
 
-                operation.Security = new List<IDictionary<string, IEnumerable<string>>>();
-                operation.Security.Add(
-                                       new Dictionary<string, IEnumerable<string>>
-                                       {
-                                           { "oauth2", requiredClaimTypes }
-                                       });
-            }
-        }
-    }
+    //            operation.Security = new List<IDictionary<string, IEnumerable<string>>>();
+    //            operation.Security.Add(
+    //                                   new Dictionary<string, IEnumerable<string>>
+    //                                   {
+    //                                       { "oauth2", requiredClaimTypes }
+    //                                   });
+    //        }
+    //    }
+    //}
 
 }

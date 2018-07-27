@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ShadowCore.API": {
+    "Shadowcore.Root": {
       "commandName": "Project",
       "launchBrowser": false,
       "launchUrl": "swagger",

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using ShadowCore.BusinessLogic.Services;
+using ShadowCore.BusinessLogic.Services.Abstract;
 using ShadowCore.DAL.EntityFramework.Abstract.Identity;
 using ShadowCore.DAL.EntityFramework.Identity;
 using ShadowCore.Models.EntityFramework;
@@ -22,6 +24,7 @@ namespace ShadowCore.DI
             services.AddScoped<IUserValidator, ApplicationUserValidator>();
             services.AddScoped<IRoleStore, ApplicationRoleStore>();
             services.AddScoped<ISignInManager, ApplicationSignInManager>();
+            services.AddScoped<IManuallyRegisteredService, ManuallyRegisteredService>();
         }
     }
 }

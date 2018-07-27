@@ -5,7 +5,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Controllers;
 
-namespace ShadowCore.API.Configuration
+namespace Shadowcore.Root.Configuration
 {
     [SuppressMessage("", "CS1591:MissingXmlDocumentation")]
     public static class ApiDescriptionExtensions

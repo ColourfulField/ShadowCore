@@ -1,13 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
 using Autofac.Extensions.DependencyInjection;
-using ShadowCore.API.Configuration.Helpers;
+using Shadowcore.Root.Configuration.Helpers;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
-namespace ShadowCore.API
+namespace Shadowcore.Root
 {
     [SuppressMessage("", "CS1591:MissingXmlDocumentation")]
     public class Program

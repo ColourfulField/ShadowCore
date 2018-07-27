@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ShadowCore.API.Controllers.Abstract;
 using ShadowCore.BusinessLogic.Services.Abstract;
 using ShadowCore.Models.DTO;
 using ShadowCore.Models.VM.User;
+using ShadowCore.Presentation.Controllers.Abstract;
 using ShadowTools.Mapper.Abstract;
 
-namespace ShadowCore.API.Controllers
+namespace ShadowCore.Presentation.Controllers
 {
     public class UserController : BaseController
     {

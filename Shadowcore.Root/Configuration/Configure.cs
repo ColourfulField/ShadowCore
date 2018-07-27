@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Serilog;
 
-namespace ShadowCore.API.Configuration
+namespace Shadowcore.Root.Configuration
 {
     /// <summary>
     /// Contains shorthand methods for HTTP request pipeline configuration in Startup
@@ -64,10 +64,11 @@ namespace ShadowCore.API.Configuration
                                  x.SwaggerEndpoint("/swagger/v1/swagger.json", "ShadowCore API V1");
                                  x.SwaggerEndpoint("/swagger/v0/swagger.json", "ShadowCore API V0");                                 
 
-                                 x.DocumentTitle("ShadowCore");
-                                 x.ShowJsonEditor();
-                                 x.ShowRequestHeaders();
-                                 x.ConfigureOAuth2("swagger-ui", "swagger-ui-secret", "swagger-ui-realm", "Swagger UI");
+                                 x.DocumentTitle = "ShadowCore";
+                                 x.DisplayRequestDuration();
+                                 //x.ShowJsonEditor();
+                                 //x.ShowRequestHeaders();
+                                 //x.ConfigureOAuth2("swagger-ui", "swagger-ui-secret", "swagger-ui-realm", "Swagger UI");
                              });
         }
     }
